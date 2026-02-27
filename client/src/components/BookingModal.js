@@ -3,7 +3,7 @@ import './BookingModal.css';
 
 const BookingModal = ({ service, onClose }) => {
   const [selectedPackage, setSelectedPackage] = useState('normal');
-  const [formData, setFormData] = useState({
+  const [formData] = useState({
     name: '',
     email: '',
     phone: '',
