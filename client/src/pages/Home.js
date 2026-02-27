@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+
 import Scene3D from '../components/Scene3D';
 import Reviews from '../components/Reviews';
 import BookingModal from '../components/BookingModal';
@@ -17,7 +17,7 @@ const Home = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [selectedService, setSelectedService] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const navigate = useNavigate();
+ 
 
   const toggleFAQ = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -32,28 +32,9 @@ const Home = () => {
     setIsModalOpen(false);
     setTimeout(() => setSelectedService(null), 300);
   };
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+ 
 
-  useEffect(() => {
-    let ticking = false;
-    
-    const handleMouseMove = (e) => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          setMousePosition({
-            x: (e.clientX / window.innerWidth) * 2 - 1,
-            y: (e.clientY / window.innerHeight) * 2 - 1
-          });
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
-
+ 
   return (
     <div className="home">
       {/* 3D Scene */}

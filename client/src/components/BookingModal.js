@@ -30,12 +30,6 @@ const BookingModal = ({ service, onClose }) => {
     }
   };
 
-  const handleInputChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
 
   const handlePlaceOrder = () => {
     const packageInfo = packages[selectedPackage];
