@@ -73,7 +73,10 @@ app.use(express.urlencoded({ extended: true }));
 // MongoDB Connection (optional - server will run without it)
 let isMongoConnected = false;
 mongoose.connect(process.env.MONGODB_URI, {
-  serverSelectionTimeoutMS: 5000
+  serverSelectionTimeoutMS: 10000,
+  tls: true,
+  tlsAllowInvalidCertificates: false,
+  family: 4
 })
 .then(() => {
   console.log('✅ MongoDB Connected Successfully');
