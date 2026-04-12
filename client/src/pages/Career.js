@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import axios from 'axios';
+import SEO from '../components/SEO';
 import './Career.css';
 
 const Career = () => {
@@ -214,8 +215,38 @@ const Career = () => {
       'Clear career progression paths and mentorship programs. Benefit from regular performance reviews, leadership training, and opportunities for promotion. We are committed to helping you achieve your professional goals and reach your full potential through structured growth and development plans.'
   }
 ];
+
+  const careerSchema = {
+    "@context": "https://schema.org",
+    "@type": "JobPosting",
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "Codewinsolutions",
+      "sameAs": "https://www.codewinsolutions.com"
+    },
+    "jobLocation": {
+      "@type": "Place",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jaffna",
+        "addressRegion": "Northern Province",
+        "addressCountry": "LK"
+      }
+    },
+    "employmentType": "FULL_TIME",
+    "description": "Join our team of talented developers and designers. We offer exciting career opportunities in web development, mobile app development, UI/UX design, and more."
+  };
+
   return (
     <div className="career-page">
+      <SEO
+        title="Careers - Join Our IT Team & Grow Your Career | Codewinsolutions"
+        description="Explore exciting career opportunities at Codewinsolutions. Join our talented team of developers, designers, and digital experts. Competitive salaries, growth opportunities, and innovative projects await."
+        keywords="careers codewinsolutions, IT jobs Sri Lanka, web developer jobs, software engineer jobs, UI UX designer jobs, job vacancies Jaffna, IT careers, join our team"
+        url="/career"
+        schema={careerSchema}
+      />
+
       {/* Hero Section */}
       <section className="career-hero">
         <div className="career-hero-content">

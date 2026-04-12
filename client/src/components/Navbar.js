@@ -58,6 +58,13 @@ const Navbar = () => {
             About
           </Link>
           <Link 
+            to="/portfolio" 
+            className={`nav-link ${location.pathname === '/portfolio' ? 'active' : ''}`}
+            onClick={() => setMenuOpen(false)}
+          >
+            Portfolio
+          </Link>
+          <Link 
             to="/career" 
             className={`nav-link ${location.pathname === '/career' ? 'active' : ''}`}
             onClick={() => setMenuOpen(false)}

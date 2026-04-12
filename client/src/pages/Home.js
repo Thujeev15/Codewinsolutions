@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
+import SEO from '../components/SEO';
 import Scene3D from '../components/Scene3D';
 import Reviews from '../components/Reviews';
 import BookingModal from '../components/BookingModal';
@@ -32,11 +33,112 @@ const Home = () => {
     setIsModalOpen(false);
     setTimeout(() => setSelectedService(null), 300);
   };
- 
 
- 
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Codewinsolutions",
+    "alternateName": "Codewin Solutions",
+    "url": "https://www.codewinsolutions.com",
+    "logo": "https://www.codewinsolutions.com/logo.png",
+    "description": "Leading IT solutions provider specializing in web development, mobile apps, custom software, digital marketing, and technical support in Sri Lanka.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Jaffna",
+      "addressLocality": "Jaffna",
+      "addressRegion": "Northern Province",
+      "postalCode": "40000",
+      "addressCountry": "LK"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 9.6615,
+      "longitude": 80.0255
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+94-76-130-2004",
+      "contactType": "customer service",
+      "areaServed": "LK",
+      "availableLanguage": ["en", "ta", "si"]
+    },
+    "sameAs": [
+      "https://www.facebook.com/codewinsolutions",
+      "https://www.linkedin.com/company/codewinsolutions",
+      "https://twitter.com/codewinsolutions"
+    ],
+    "foundingDate": "2020",
+    "founders": [{
+      "@type": "Person",
+      "name": "Codewinsolutions Team"
+    }],
+    "numberOfEmployees": {
+      "@type": "QuantitativeValue",
+      "value": "10-50"
+    },
+    "areaServed": {
+      "@type": "Country",
+      "name": "Sri Lanka"
+    }
+  };
+
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Codewinsolutions",
+    "image": "https://www.codewinsolutions.com/logo.png",
+    "@id": "https://www.codewinsolutions.com",
+    "url": "https://www.codewinsolutions.com",
+    "telephone": "+94-76-130-2004",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Jaffna",
+      "addressLocality": "Jaffna",
+      "addressRegion": "Northern Province",
+      "postalCode": "40000",
+      "addressCountry": "LK"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 9.6615,
+      "longitude": 80.0255
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "09:00",
+      "closes": "18:00"
+    }],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "127"
+    }
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Codewinsolutions",
+    "url": "https://www.codewinsolutions.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://www.codewinsolutions.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  };
+
   return (
     <div className="home">
+      <SEO
+        title="Codewinsolutions - Expert IT Solutions & Software Development in Sri Lanka"
+        description="Leading IT solutions provider in Sri Lanka. We deliver custom web development, mobile apps, software solutions, digital marketing, SEO services, and UI/UX design. Transform your business with cutting-edge technology."
+        keywords="web development Sri Lanka, mobile app development Jaffna, custom software development, IT solutions Sri Lanka, digital marketing agency, SEO services Sri Lanka, UI/UX design, React development, Node.js development, MERN stack, software company Jaffna, e-commerce development, business automation, cloud solutions"
+        url="/"
+        schema={[organizationSchema, localBusinessSchema, websiteSchema]}
+      />
+
       {/* 3D Scene */}
       <div className="scene-3d-container">
         <Scene3D />

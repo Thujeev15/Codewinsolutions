@@ -1,10 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
+import TeamMemberPanel from '../components/TeamMemberPanel';
 import './About.css';
 
 const About = () => {
+  const [selectedMember, setSelectedMember] = useState(null);
+
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Codewinsolutions",
+      "description": "A passionate team of developers, designers, and digital strategists dedicated to delivering cutting-edge IT solutions. We combine technical excellence with creative innovation to help businesses thrive in the digital age.",
+      "foundingDate": "2020",
+      "slogan": "Innovating Solutions, Empowering Growth"
+    }
+  };
+
   return (
     <div className="about-page">
+      <SEO
+        title="About Us - Expert IT Team & Company Story | Codewinsolutions"
+        description="Meet the passionate team behind Codewinsolutions. Learn about our mission, values, and expertise in delivering innovative IT solutions. Based in Sri Lanka, serving clients worldwide with excellence."
+        keywords="about codewinsolutions, IT company Sri Lanka, software development team, web development experts, technology company, IT services Jaffna, our team, company profile"
+        url="/about"
+        schema={aboutSchema}
+      />
+
       {/* Hero Header */}
       <div className="about-hero">
         <motion.div
@@ -70,10 +94,10 @@ const About = () => {
 
           <div className="story-content">
             <div className="story-image">
-              {/*our photo add pending */}
               <img
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070"
-                alt="Team working together"
+                src="/our-team.jpeg"
+                alt="Team collaboration during meetup"
+                className="story-image-single"
               />
             </div>
             <div className="story-text">
@@ -217,27 +241,36 @@ const About = () => {
           <div className="team-grid">
             {[
               {
-                name: 'Thurshikan Srithar',
+                name: 'Thurshikan S',
                 role: 'Founder',
-                
+                qualification: 'BSc in Information Technology(SLIIT)',
+                image: '/thurshi.jpeg',
+                bio: 'Thurshikan is the visionary founder of Codewinsolutions, bringing innovative ideas and strategic direction to the company. With a passion for technology and entrepreneurship, he established Codewinsolutions with the mission to transform businesses through cutting-edge digital solutions.\n\nWith extensive experience in software development and business strategy, Thurshikan leads the company with a focus on delivering exceptional value to clients while fostering a culture of innovation and excellence. His leadership has been instrumental in establishing Codewinsolutions as a trusted technology partner for businesses across various industries.',
+                linkedin: 'https://linkedin.com/in/thurshikan-srithar',
+                github: 'https://github.com/thurshikan',
+                email: 'thurshikan@codewinsolutions.com'
               },
               {
-                name: 'Thanushkanth Jeyaseelan',
+                name: 'Thanushkanth J',
                 role: 'CEO',
-                
+                qualification: 'BSc in Software Engineering (SLIIT)',
+                image: '/mmmm.jpeg',
+                bio: 'As CEO of Codewinsolutions, Thanushkanth drives the company\'s growth strategy and operational excellence. His leadership style combines strategic vision with hands-on execution, ensuring that every project delivers measurable results for clients.\n\nWith a strong background in technology management and business development, Thanushkanth has successfully led multiple large-scale digital transformation projects. He is committed to building lasting relationships with clients and creating innovative solutions that address real business challenges.',
+                linkedin: 'https://linkedin.com/in/thanushkanth-jeyaseelan',
+                github: 'https://github.com/thanushkanth',
+                email: 'thanushkanth@codewinsolutions.com'
               },
               {
-                name: 'Thujeev Kamaleswaran',
-                role: 'CTO',
-                
-              },
-              {
-                name: 'Prakash Jeganadhan',
-                role: 'CFO',
-                
-              },
-              
+                name: 'Pahalavan K',
 
+                role: 'COO',
+                qualification: 'BSc in Computer Science (Deakin University)',
+                image: '/pk2.jpeg',
+                bio: 'As CEO of Codewinsolutions, Thanushkanth drives the company\'s growth strategy and operational excellence. His leadership style combines strategic vision with hands-on execution, ensuring that every project delivers measurable results for clients.\n\nWith a strong background in technology management and business development, Thanushkanth has successfully led multiple large-scale digital transformation projects. He is committed to building lasting relationships with clients and creating innovative solutions that address real business challenges.',
+                linkedin: 'https://www.linkedin.com/in/pahalavan-kandeepan-380205345?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
+                github: 'https://github.com/Pahalavan3',
+                email: 'pahalavan@codewinsolutions.com'
+              },
               
             ].map((member, index) => (
               <motion.div
@@ -248,14 +281,28 @@ const About = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10 }}
+                onClick={() => setSelectedMember(member)}
+                style={{ cursor: 'pointer' }}
               >
+                <div className="team-image">
+                  <img src={member.image} alt={member.name} />
+                </div>
                 <h3>{member.name}</h3>
                 <p className="team-role">{member.role}</p>
+                {member.qualification && (
+                  <p className="team-qualification">{member.qualification}</p>
+                )}
               </motion.div>
             ))}
           </div>
         </motion.div>
       </section>
+
+      {/* Team Member Detail Panel */}
+      <TeamMemberPanel
+        member={selectedMember}
+        onClose={() => setSelectedMember(null)}
+      />
     </div>
   );
 };

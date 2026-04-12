@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const multer = require('multer');
 const nodemailer = require('nodemailer');
+const axios = require('axios');
 const path = require('path');
 require('dotenv').config();
 
@@ -165,6 +166,44 @@ const transporter = nodemailer.createTransport({
     pass: process.env.EMAIL_PASSWORD || 'your-app-password'
   }
 });
+
+// WhatsApp notification function using Meta Business API
+async function sendWhatsAppNotification(message, recipientNumber) {
+  const accessToken = process.env.WHATSAPP_ACCESS_TOKEN;
+  const phoneNumberId = process.env.WHATSAPP_PHONE_NUMBER_ID;
+
+  if (!accessToken || !phoneNumberId) {
+    console.log('⚠️ WhatsApp credentials not configured - skipping WhatsApp notification');
+    return false;
+  }
+
+  try {
+    // Format phone number - remove all non-digits
+    const formattedNumber = recipientNumber.replace(/\D/g, '');
+
+    const response = await axios.post(
+      `https://graph.facebook.com/v18.0/${phoneNumberId}/messages`,
+      {
+        messaging_product: 'whatsapp',
+        to: formattedNumber,
+        type: 'text',
+        text: { body: message }
+      },
+      {
+        headers: {
+          'Authorization': `Bearer ${accessToken}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
+
+    console.log('✅ WhatsApp message sent successfully:', response.data);
+    return true;
+  } catch (error) {
+    console.error('❌ WhatsApp send failed:', error.response?.data || error.message);
+    return false;
+  }
+}
 
 // Routes
 app.get('/api/health', (req, res) => {
@@ -427,10 +466,12 @@ app.post('/api/job-application', upload.single('cv'), async (req, res) => {
 _Received: ${new Date().toLocaleString('en-US', { timeZone: 'Asia/Colombo' })}_
     `.trim();
 
-    // You can integrate with WhatsApp Business API here
-    // For now, we'll log the message (you'll need to set up WhatsApp API separately)
-    console.log('WhatsApp Message to send:', whatsappMessage);
-    console.log('WhatsApp Number:', companyPhone);
+    // Send WhatsApp notification to company using Meta Business API
+    try {
+      await sendWhatsAppNotification(whatsappMessage, companyPhone);
+    } catch (whatsappError) {
+      console.error('⚠️ WhatsApp notification failed (non-critical):', whatsappError.message);
+    }
 
     res.status(201).json({
       success: true,

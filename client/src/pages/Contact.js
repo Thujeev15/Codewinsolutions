@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import SEO from '../components/SEO';
 import './Contact.css';
 
 const Contact = () => {
@@ -50,8 +51,33 @@ const Contact = () => {
     }
   };
 
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Codewinsolutions",
+      "telephone": "+94-76-130-2004",
+      "email": "contact@codewinsolutions.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Jaffna",
+        "addressRegion": "Northern Province",
+        "addressCountry": "LK"
+      }
+    }
+  };
+
   return (
     <div className="contact-page">
+      <SEO
+        title="Contact Us - Get in Touch for IT Solutions | Codewinsolutions"
+        description="Contact Codewinsolutions for expert IT services. Reach out for web development, mobile apps, custom software, and digital marketing solutions. Available in Jaffna, Sri Lanka. Call +94-76-130-2004"
+        keywords="contact codewinsolutions, IT services contact, web development inquiry, get a quote, software development contact, Jaffna IT company, contact IT services Sri Lanka"
+        url="/contact"
+        schema={contactSchema}
+      />
+
       {/* Portfolio Coming Soon - Full Screen */}
       {showPortfolioModal && (
         <div

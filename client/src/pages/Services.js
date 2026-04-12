@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 import './Services.css';
 
 import serviceWeb from '../assets/images/service_web.jpg';
@@ -65,8 +66,77 @@ const Services = () => {
     }
   ];
 
+  const servicesSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "Service",
+        "name": "Web Design & Development",
+        "description": "Creative, responsive websites and powerful web applications for your business",
+        "provider": {
+          "@type": "Organization",
+          "name": "Codewinsolutions"
+        }
+      },
+      {
+        "@type": "Service",
+        "name": "Mobile Application Development",
+        "description": "High-performance mobile applications for Android and iOS platforms",
+        "provider": {
+          "@type": "Organization",
+          "name": "Codewinsolutions"
+        }
+      },
+      {
+        "@type": "Service",
+        "name": "Custom Software Development",
+        "description": "Tailor-made software solutions built around your workflows and goals",
+        "provider": {
+          "@type": "Organization",
+          "name": "Codewinsolutions"
+        }
+      },
+      {
+        "@type": "Service",
+        "name": "Digital Marketing (SEO & Meta Advertising)",
+        "description": "Improve online visibility, traffic, and leads through smart digital campaigns",
+        "provider": {
+          "@type": "Organization",
+          "name": "Codewinsolutions"
+        }
+      },
+      {
+        "@type": "Service",
+        "name": "System Maintenance & Technical Support",
+        "description": "Reliable maintenance and technical support to keep systems stable and secure",
+        "provider": {
+          "@type": "Organization",
+          "name": "Codewinsolutions"
+        }
+      },
+      {
+        "@type": "Service",
+        "name": "UI/UX Design",
+        "description": "User-friendly interface design focused on creativity, clarity, and engagement",
+        "provider": {
+          "@type": "Organization",
+          "name": "Codewinsolutions"
+        }
+      }
+    ]
+  };
+
   return (
     <div className="services-page">
+      <SEO
+        title="IT Services - Web Development, Mobile Apps & Digital Marketing | Codewinsolutions"
+        description="Professional IT services including web design & development, mobile app development, custom software, digital marketing, SEO, UI/UX design, and technical support. Get expert solutions for your business."
+        keywords="web development services, mobile app development, custom software development, digital marketing services, SEO optimization, Meta ads, UI/UX design services, technical support, system maintenance, React development, Node.js services"
+        url="/services"
+        schema={servicesSchema}
+      />
+
       {/* Hero Banner */}
       <section className="services-banner">
         <div className="banner-content">
