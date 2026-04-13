@@ -93,12 +93,28 @@ const About = () => {
           <h2 className="section-title"><span className="text-white">Our</span> <span className="text-cyan">Story</span></h2>
 
           <div className="story-content">
-            <div className="story-image">
-              <img
-                src="/our-team.jpeg"
-                alt="Team collaboration during meetup"
-                className="story-image-single"
-              />
+            <div className="story-gallery">
+              <div className="story-image-card story-image-main">
+                <img
+                  src="/our-team.jpeg"
+                  alt="Codewinsolutions team collaboration"
+                  className="story-image-single story-image-main-img"
+                />
+              </div>
+              <div className="story-image-card story-image-secondary">
+                <img
+                  src="/our-mem.jpeg"
+                  alt="Codewinsolutions team meetup"
+                  className="story-image-single story-image-secondary-img"
+                />
+              </div>
+              <div className="story-image-card story-image-tertiary">
+                <img
+                  src="/out-t.jpeg"
+                  alt="Codewinsolutions team moments"
+                  className="story-image-single story-image-tertiary-img"
+                />
+              </div>
             </div>
             <div className="story-text">
               <p>
@@ -117,6 +133,21 @@ const About = () => {
                 emerging technologies like AI and machine learning, we're equipped to handle projects
                 of any scale and complexity.
               </p>
+
+              <div className="story-highlights">
+                <div className="story-highlight">
+                  <span className="highlight-number">2026</span>
+                  <span className="highlight-label">Founded</span>
+                </div>
+                <div className="story-highlight">
+                  <span className="highlight-number">50+</span>
+                  <span className="highlight-label">Projects Delivered</span>
+                </div>
+                <div className="story-highlight">
+                  <span className="highlight-number">Global</span>
+                  <span className="highlight-label">Client Reach</span>
+                </div>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -243,18 +274,21 @@ const About = () => {
               {
                 name: 'Thurshikan S',
                 role: 'Founder',
-                qualification: 'BSc in Information Technology(SLIIT)',
+                qualification: 'BSc (Hons) in Information Technology(SLIIT)',
                 image: '/thurshi.jpeg',
                 bio: 'Thurshikan is the visionary founder of Codewinsolutions, bringing innovative ideas and strategic direction to the company. With a passion for technology and entrepreneurship, he established Codewinsolutions with the mission to transform businesses through cutting-edge digital solutions.\n\nWith extensive experience in software development and business strategy, Thurshikan leads the company with a focus on delivering exceptional value to clients while fostering a culture of innovation and excellence. His leadership has been instrumental in establishing Codewinsolutions as a trusted technology partner for businesses across various industries.',
-                linkedin: 'https://linkedin.com/in/thurshikan-srithar',
+                linkedin: 'https://www.linkedin.com/in/thurshikan-srithar-519a41401?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
                 github: 'https://github.com/thurshikan',
                 email: 'thurshikan@codewinsolutions.com'
               },
               {
                 name: 'Thanushkanth J',
                 role: 'CEO',
-                qualification: 'BSc in Software Engineering (SLIIT)',
-                image: '/mmmm.jpeg',
+                qualification: 'BSc Hons) in Software Engineering (SLIIT)',
+                image: '/mo.jpeg',
+                imageFit: 'contain',
+                imagePosition: 'center top',
+                imageBackground: '#ffffff',
                 bio: 'As CEO of Codewinsolutions, Thanushkanth drives the company\'s growth strategy and operational excellence. His leadership style combines strategic vision with hands-on execution, ensuring that every project delivers measurable results for clients.\n\nWith a strong background in technology management and business development, Thanushkanth has successfully led multiple large-scale digital transformation projects. He is committed to building lasting relationships with clients and creating innovative solutions that address real business challenges.',
                 linkedin: 'https://linkedin.com/in/thanushkanth-jeyaseelan',
                 github: 'https://github.com/thanushkanth',
@@ -266,7 +300,7 @@ const About = () => {
                 role: 'COO',
                 qualification: 'BSc in Computer Science (Deakin University)',
                 image: '/pk2.jpeg',
-                bio: 'As CEO of Codewinsolutions, Thanushkanth drives the company\'s growth strategy and operational excellence. His leadership style combines strategic vision with hands-on execution, ensuring that every project delivers measurable results for clients.\n\nWith a strong background in technology management and business development, Thanushkanth has successfully led multiple large-scale digital transformation projects. He is committed to building lasting relationships with clients and creating innovative solutions that address real business challenges.',
+                bio: 'As COO of Codewinsolutions, Pahalavan oversees the company\'s day-to-day operations and ensures seamless execution of strategic initiatives. His expertise in technology management and business development has been crucial in driving the company\'s growth and success.\n\nWith a strong background in computer science and a passion for innovation, Pahalavan is dedicated to delivering high-quality solutions that meet the evolving needs of our clients.',
                 linkedin: 'https://www.linkedin.com/in/pahalavan-kandeepan-380205345?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
                 github: 'https://github.com/Pahalavan3',
                 email: 'pahalavan@codewinsolutions.com'
@@ -284,8 +318,22 @@ const About = () => {
                 onClick={() => setSelectedMember(member)}
                 style={{ cursor: 'pointer' }}
               >
-                <div className="team-image">
-                  <img src={member.image} alt={member.name} />
+                <div
+                  className="team-image"
+                  style={member.imageBackground ? { backgroundColor: member.imageBackground } : undefined}
+                >
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    style={
+                      member.imageFit || member.imagePosition
+                        ? {
+                            objectFit: member.imageFit || 'cover',
+                            objectPosition: member.imagePosition || 'center top'
+                          }
+                        : undefined
+                    }
+                  />
                 </div>
                 <h3>{member.name}</h3>
                 <p className="team-role">{member.role}</p>

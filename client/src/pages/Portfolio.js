@@ -7,7 +7,7 @@ const completedProjects = [
   {
     title: 'Fixwellz',
     type: 'Service Marketplace Platform',
-    image: 'https://image.thum.io/get/width/1400/https://www.fixwellz.com/careers',
+    image: '/fixwellz-hero.png',
     description:
       'Built and delivered a digital platform that brings all services under one roof, making it easy for users to discover and book trusted services.',
     outcome: 'Completed and deployed for live client operations.',
@@ -164,46 +164,6 @@ const Portfolio = () => {
                 </a>
               )}
             </motion.article>
-          ))}
-        </div>
-      </section>
-
-      <section className="portfolio-section upcoming">
-        <motion.div
-          className="section-header"
-          initial={{ opacity: 0, y: 22 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <h2>Upcoming Projects</h2>
-          <p>Projects currently in planning, design, and development stages.</p>
-        </motion.div>
-
-        <div className="timeline">
-          {upcomingProjects.map((project, index) => (
-            <motion.div
-              className="timeline-row"
-              key={project.title}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.45, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <div className="dot" />
-              <article className="timeline-card">
-                <div className="timeline-head">
-                  <h3>{project.title}</h3>
-                  <span>{project.quarter}</span>
-                </div>
-                <p>{project.focus}</p>
-                <ul className="stack-list compact">
-                  {project.stack.map((tech) => (
-                    <li key={tech}>{tech}</li>
-                  ))}
-                </ul>
-              </article>
-            </motion.div>
           ))}
         </div>
       </section>
