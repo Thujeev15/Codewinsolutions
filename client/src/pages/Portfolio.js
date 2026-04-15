@@ -38,30 +38,6 @@ const completedProjects = [
   }
 ];
 
-const upcomingProjects = [
-  {
-    title: 'EduPulse Learning Suite',
-    quarter: 'Q2 2026',
-    focus:
-      'Adaptive learning platform with teacher dashboards, student analytics, and smart content recommendations.',
-    stack: ['Next.js', 'Node.js', 'Redis', 'OpenAI APIs']
-  },
-  {
-    title: 'FinSight Client Workspace',
-    quarter: 'Q3 2026',
-    focus:
-      'Secure financial client portal with document workflows, approvals, and performance reporting.',
-    stack: ['React', '.NET', 'SQL Server', 'Power BI']
-  },
-  {
-    title: 'OpsFlow Automation Engine',
-    quarter: 'Q4 2026',
-    focus:
-      'Internal operations automation for requests, SLA tracking, notifications, and executive KPIs.',
-    stack: ['React', 'Python', 'FastAPI', 'Docker']
-  }
-];
-
 const Portfolio = () => {
   const portfolioSchema = {
     "@context": "https://schema.org",
